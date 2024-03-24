@@ -23,7 +23,4 @@ yarn-debug.log*
 yarn-error.log*
 
 
-public/Connection.php
-public/Send_Email.php
 public/GitHub.sh
-vendor/phpmailer/phpmailer/
