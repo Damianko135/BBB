@@ -3,7 +3,7 @@ name: Build and Push Docker Image on Add/Remove
 on:
   push:
     paths:
-      - '**' 
+      - "**"
 
 jobs:
   docker:
