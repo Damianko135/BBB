@@ -2,8 +2,6 @@ name: Build and Push Docker Image on Add/Remove
 
 on:
   push:
-    paths:
-      - "**"
 
 jobs:
   docker:
@@ -38,14 +36,13 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          push: true
           tags: |
             ${{ env.REPO_LC }}:latest
             ${{ env.REPO_LC }}:${{ env.VERSION }}
             ${{ env.REPO_LC }}:${{ env.VERSION }}-${{ github.sha }}
           platforms: linux/amd64,linux/arm64
-          build-args: |
-            BUILD_VERSION=${{ env.VERSION }}
+          push: ${{ github.event_name != 'pull_request' }}
+
 
       - name: Clean up unused Docker images
         run: docker image prune -af
